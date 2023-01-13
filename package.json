@@ -1,0 +1,24 @@
+{
+    "private": true,
+    "scripts": {
+        "build": "nuxt build",
+        "dev": "nuxt dev",
+        "generate": "nuxt generate",
+        "preview": "nuxt preview",
+        "postinstall": "nuxt prepare",
+        "serve": "npm run build && vite preview"
+    },
+    "devDependencies": {
+        "lodash": "^4.17.21",
+        "nuxt": "3.0.0",
+        "vue": "^3.2.45",
+        "vueify": "^9.4.1"
+    },
+    "dependencies": {
+        "bootstrap": "^5.1.3",
+        "chart.js": "^4.1.2",
+        "moment": "^2.29.4",
+        "sass": "^1.57.1",
+        "sass-loader": "^13.2.0"
+    }
+}
