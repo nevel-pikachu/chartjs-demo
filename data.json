@@ -55,7 +55,6 @@
   },
   {
     "type": "bar",
-    "capacity": 5,
     "color": "#FFC698",
     "label": "Chi phí phát sinh",
     "datasets": [
