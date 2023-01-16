@@ -4,6 +4,7 @@
 
 <script>
 import moment from 'moment'
+import data from '../data.json'
 import {
   Chart as ChartJS,
   Title,
@@ -22,57 +23,49 @@ ChartJS.register(CategoryScale, LinearScale, LineController, BarController, BarE
 
 export default {
   mounted() {
+    let barSumValueData = [];
+    const datasets = data.map(item => {
+      if (item.type === 'line') {
+        item.data = item.datasets.map(el => el.value);
+        item.borderColor = '#33C963';
+        item.pointRadius = 5;
+        item.pointBackgroundColor = item.color;
+        item.borderDashOffset = 0.2;
+        item.tension = 1;
+        item.lineTension = 0.4;
+      } else if (item.type === 'bar') {
+        if (!barSumValueData.length) {
+          item.data = item.datasets.map(el => el.value);
+        } else {
+          item.data = item.datasets.map((el, index) => el.value + barSumValueData[index]);
+        }
+        barSumValueData = item.data;
+        item.barPercentage = 0.5;
+        item.backgroundColor = item.color
+      }
+      return item;
+    })
     const myChart = this.$refs.myChart;
     const million = Math.pow(10, 6);
     const billion = Math.pow(10, 9);
 
     // column amount in chart grid
-    const capacity = 16;
+    const capacity = 5;
 
     // fake data for bar chart and line chart
-    const firstBarData = Array.from({ length: capacity }, () => Math.floor(Math.random() * 5 * million + 1000000));
-    const secondBarData = firstBarData.map(item => item + Math.floor(Math.random() * 5 * million));
-    const lineData = Array.from({ length: capacity }, () => Math.floor(Math.random() * 10 * million));
-
-    const today = new Date("2023-01-20");
+    // const firstBarData = Array.from({ length: capacity }, () => Math.floor(Math.random() * 5 * million + 1000000));
+    // const secondBarData = firstBarData.map(item => item + Math.floor(Math.random() * 5 * million));
+    // const lineData = Array.from({ length: capacity }, () => Math.floor(Math.random() * 10 * million));
+    // console.log(data[0].datasets.map(item => item.key));
+    // const today = new Date("2023-01-20");
 
     // chart config
     new ChartJS(myChart, {
       type: "bar",
       data: {
         // label x-axis
-        labels: Array.from({ length: capacity }, (item, index) => {
-          let nextDay = index === 0 ? today.getDate() : today.getDate() + 1;
-          return moment(new Date(today.setDate(nextDay))).format("DD/MM")
-        }),
-        datasets: [
-          {
-            type: "line",
-            label: "Khối lượng giao dịch",
-            data: lineData,
-            fill: 1,
-            borderColor: '#33C963',
-            pointRadius: 5,
-            pointBackgroundColor: '#33C963',
-            borderDashOffset: 0.2,
-            tension: 1,
-            lineTension: 0.4
-          },
-          {
-            type: "bar",
-            backgroundColor: "#84CAFF",
-            label: "Phí giao dịch",
-            data: firstBarData,
-            barPercentage: 0.5
-          },
-          {
-            type: "bar",
-            backgroundColor: "#FFC698",
-            label: "Phí giao dịch",
-            data: secondBarData,
-            barPercentage: 0.5
-          },
-        ]
+        labels: data[0].datasets.map(item => item.key),
+        datasets: datasets
       },
       options: {
         // stack for bar chart by vertical

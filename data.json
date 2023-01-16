@@ -1,0 +1,84 @@
+[
+  {
+    "type": "line",
+    "color": "#33C963",
+    "label":"Khối lượng giao dịch",
+    "datasets": [
+      {
+        "key": "20/1",
+        "value": 160000000
+      },
+      {
+        "key": "21/1",
+        "value": 90000000
+      },
+      {
+        "key": "22/1",
+        "value": 130000000
+      },
+      {
+        "key": "23/1",
+        "value": 80000000
+      },
+      {
+        "key": "23/1",
+        "value": 18000000
+      }
+    ]
+  },
+  {
+    "type": "bar",
+    "label": "Phí giao dịch",
+    "color": "#84CAFF",
+    "datasets": [
+      {
+        "key": "20/1",
+        "value": 100000000
+      },
+      {
+        "key": "21/1",
+        "value": 40000000
+      },
+      {
+        "key": "22/1",
+        "value": 60000000
+      },
+      {
+        "key": "23/1",
+        "value": 20000000
+      },
+      {
+        "key": "23/1",
+        "value": 15000000
+      }
+    ]
+  },
+  {
+    "type": "bar",
+    "capacity": 5,
+    "color": "#FFC698",
+    "label": "Chi phí phát sinh",
+    "datasets": [
+      {
+        "key": "20/1",
+        "value": 5000000
+      },
+      {
+        "key": "21/1",
+        "value": 1000000
+      },
+      {
+        "key": "22/1",
+        "value": 2000000
+      },
+      {
+        "key": "23/1",
+        "value": 1600000
+      },
+      {
+        "key": "23/1",
+        "value": 9000000
+      }
+    ]
+  }
+]
